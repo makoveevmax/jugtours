@@ -24,7 +24,7 @@ public class Group {
     private String city;
     private String stateOrProvince;
     private String country;
-    private String postalCode;
+    private String eve;
     @ManyToOne(cascade=CascadeType.PERSIST)
     private User user;
 

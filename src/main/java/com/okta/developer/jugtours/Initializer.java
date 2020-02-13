@@ -21,18 +21,17 @@ class Initializer implements CommandLineRunner {
 
     @Override
     public void run(String... strings) {
-        Stream.of("Denver JUG", "Utah JUG", "Seattle JUG",
-                "Richmond JUG").forEach(name ->
+        Stream.of("Joker SPb", "DevOops SPb").forEach(name ->
                 repository.save(new Group(name))
         );
 
-        Group djug = repository.findByName("Denver JUG");
-        Event e = Event.builder().title("Full Stack Reactive")
-                .description("Reactive with Spring Boot + React")
-                .date(Instant.parse("2018-12-12T18:00:00.000Z"))
+        Group jug = repository.findByName("Joker SPb");
+        Event e = Event.builder().title("Java conference for Seniors and Team Lead's")
+                .description("Concurrency, testing, highloads")
+                .date(Instant.parse("2019-10-25T18:00:00.000Z"))
                 .build();
-        djug.setEvents(Collections.singleton(e));
-        repository.save(djug);
+        jug.setEvents(Collections.singleton(e));
+        repository.save(jug);
 
         repository.findAll().forEach(System.out::println);
     }

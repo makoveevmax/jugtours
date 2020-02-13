@@ -52,20 +52,15 @@ class GroupList extends Component {
 
         const groupList = groups.map(group => {
             const address = `${group.address || ''} ${group.city || ''} ${group.stateOrProvince || ''}`;
+            const events =`${group.eve || ''}`;
             return <tr key={group.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{group.name}</td>
                 <td>{address}</td>
-                <td>{group.events.map(event => {
-                    return <div key={event.id}>{new Intl.DateTimeFormat('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: '2-digit'
-                    }).format(new Date(event.date))}: {event.title}</div>
-                })}</td>
+                <td>{events}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/groups/" + group.id}>Edit</Button>
-                        <Button size="sm" color="danger" onClick={() => this.remove(group.id)}>Delete</Button>
+                        <Button size="sm" color="warning" tag={Link} to={"/groups/" + group.id}>Редактировать</Button>
+                        <Button size="sm" color="danger" onClick={() => this.remove(group.id)}>Удалить</Button>
                     </ButtonGroup>
                 </td>
             </tr>
@@ -76,16 +71,16 @@ class GroupList extends Component {
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/groups/new">Add Group</Button>
+                        <Button color="success" tag={Link} to="/groups/new">Добавить мероприятие</Button>
                     </div>
-                    <h3>My JUG Tour</h3>
+                    <h3>Мои мероприятия</h3>
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="20%">Name</th>
-                            <th width="20%">Location</th>
-                            <th>Events</th>
-                            <th width="10%">Actions</th>
+                            <th width="20%">Название</th>
+                            <th width="20%">Место проведения</th>
+                            <th width="20%">Комментарий</th>
+                            <th width="10%">Управление</th>
                         </tr>
                         </thead>
                         <tbody>
